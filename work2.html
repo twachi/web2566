@@ -1,14 +1,32 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
   </head>
   <body>
     <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="green"></a-box>
+      <a-assets>
+        <img id="city" src="assets/lab360.jpg">
+        <img id="cp" src="assets/cp.jpg">
+        <img id="p1" src="work1/1.jpg">
+        <img id="p2" src="work1/2.jpg">
+        <img id="p3" src="work1/3.jpg">
+      </a-assets>
+      
+      <a-text value="Wachirawut Thamviset" position="-1 1 -2"></a-text>
+      <a-box position="-1 0.5 -3" rotation="0 45 0" color="white" src="#cp"
+      event-set__enter="_event: mouseenter; color: #FF0000"
+      event-set__leave="_event: mouseleave; color: #FFFFFF"
+      ></a-box>
+      <a-box position="-2.63 0.5 -3" rotation="0 45 0" color="white" src="#p1"></a-box>
       <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECFFFF"></a-sky>
+      <a-cylinder position="1 0.75 -3" rotation="0 90 0" radius="0.5" height="1.5" color="#FFC65D" src="#p2"></a-cylinder>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="4" color="#7BC8A4" src="#city"></a-plane>
+      <a-sky color="#ECFFFF" src="#city" radius="40"></a-sky>
+      <a-camera>
+        <a-cursor></a-cursor>
+      </a-camera>
     </a-scene>
+
   </body>
 </html>
