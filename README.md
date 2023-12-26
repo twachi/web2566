@@ -4,3 +4,10 @@
   * งานที่ 1  https://twachi.github.io/web2566/work1.html
   * งานที่ 2  https://twachi.github.io/web2566/work2.html
   
+
+# ผลงานของ นศ. 
+* Work 2
+  * https://artijo.github.io/web2566/work2.html
+  * https://peerapon3014.github.io/web-2566/work2/work2.html
+  * https://blackevil7.github.io/web-2566/work2.html
+  * https://exorsister.github.io/web2566/work2.html
