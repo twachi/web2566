@@ -16,3 +16,5 @@
   * https://paphanannajanhom.github.io/vrr/work2.html
   * https://folkratchanon.github.io/work2_VRweb360/
   * https://panganongnat.github.io/web2566/work2.html
+  * https://iicechyd.github.io/web2566/public/work2.html
+  * https://pativatkongsawat.github.io/web-2566/
