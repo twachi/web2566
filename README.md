@@ -14,3 +14,5 @@
   * https://sineeyagron2546.github.io/Work-2/work2.html
   * https://guitarphatcha.github.io/web-2566__/work2.html
   * https://paphanannajanhom.github.io/vrr/work2.html
+  * https://folkratchanon.github.io/work2_VRweb360/
+  * https://panganongnat.github.io/web2566/work2.html
