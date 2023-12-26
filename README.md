@@ -11,3 +11,4 @@
   * https://peerapon3014.github.io/web-2566/work2/work2.html
   * https://blackevil7.github.io/web-2566/work2.html
   * https://exorsister.github.io/web2566/work2.html
+  * https://sineeyagron2546.github.io/Work-2/work2.html
