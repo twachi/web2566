@@ -17,6 +17,10 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script> -->
   </head>
   <body>
     <div id="app">
@@ -24,13 +28,20 @@
         <v-container>
           <v-card>
             <v-card-title class="bg-blue-grey">{{title}}</v-card-title>
-            <v-card-actions
-              >
-              <v-btn @click="google_login()"> Login Popup</v-btn>
-              <v-btn @click="google_login2()"> Login Redirect</v-btn>              
-              </v-card-actions
-            >
-            {{ user }}
+            <v-card-actions>
+              <template v-if="user">
+                <div class="pa-2">
+                  <v-avatar><img :src="user.photoURL" /></v-avatar>
+                </div>
+                <div class="pa-2">
+                  {{user.displayName}}<br />
+                  {{user.email}}<br />
+                </div>
+              </template>
+              <v-btn @click="google_login()"  v-if="!user"> Login</v-btn>
+              <v-btn @click="google_logout()" v-if="user"> Logout</v-btn>
+            </v-card-actions>
+
             <v-card-text class="pa-6">
               <!-- <pre>{{students}}</pre> -->
               <table width="100%">
@@ -126,7 +137,7 @@
     </div>
 
     <script>
-      const firebaseConfig = {
+      var firebaseConfig = {
         apiKey: "AIzaSyAnj3AV87GKjDstCz3gyGXnsnMWW1HIEzA",
         authDomain: "web2566-twachi.firebaseapp.com",
         projectId: "web2566-twachi",
@@ -135,6 +146,7 @@
         appId: "1:261311642379:web:2acd3a8db97b9fb392c00e",
         measurementId: "G-C562117J8H",
       };
+
       firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
 
@@ -150,7 +162,15 @@
             user: null,
           };
         },
-
+        mounted() {
+          firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+              this.user = user.toJSON();
+            } else {
+              this.user = null;
+            }
+          });
+        },
         methods: {
           readData() {
             db.collection("students")
@@ -197,29 +217,12 @@
             var provider = new firebase.auth.GoogleAuthProvider();
             provider.addScope("profile");
             provider.addScope("email");
-            firebase
-              .auth()
-              .signInWithPopup(provider)
-              .then(function (result) {
-                this.user = result.user;
-              });
+            firebase.auth().signInWithPopup(provider);
           },
-          google_login2() {
-            firebase
-              .auth()
-              .getRedirectResult()
-              .then(function (result) {
-                if (result.credential) {
-                  // This gives you a Google Access Token.
-                  var token = result.credential.accessToken;
-                }
-                this.user = result.user;
-              });
-            // Start a sign in process for an unauthenticated user.
-            var provider = new firebase.auth.GoogleAuthProvider();
-            provider.addScope("profile");
-            provider.addScope("email");
-            firebase.auth().signInWithRedirect(provider);
+          google_logout() {
+            if (confirm("Are you sure?")) {
+              firebase.auth().signOut();
+            }
           },
         },
       });
